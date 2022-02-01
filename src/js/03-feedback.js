@@ -26,11 +26,13 @@ refs.formRef.addEventListener('input', throttle((e) => {
 populateTextarea();
 
 function onFormSubmit(event){
+    
     event.preventDefault();
     console.log("submit form");
+    console.log(formData);
     event.currentTarget.reset();
     localStorage.removeItem(FEEDBACK_KEY);
-    console.log(formData);
+    
 };
 
 function populateTextarea(){
@@ -40,5 +42,7 @@ function populateTextarea(){
     if(savedDataOfTextarea){
         refs.emailRef.value = savedDataOfTextarea.email;
         refs.textareaRef.value = savedDataOfTextarea.message;
+        formData.email = savedDataOfTextarea.email;
+        formData.message = savedDataOfTextarea.message;
     };
 };
