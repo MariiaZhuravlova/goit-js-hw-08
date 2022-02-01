@@ -16,15 +16,16 @@ const refs = {
 refs.formRef.addEventListener('submit', onFormSubmit);
 
 refs.formRef.addEventListener('input', throttle((e) => {
-    formData[e.target.name] = e.target.value;
+    // formData[e.target.name] = e.target.value;
+    formData.email =refs.emailRef.value;
+    formData.message =refs.textareaRef.value;
     console.log(formData);
     localStorage.setItem(FEEDBACK_KEY, JSON.stringify(formData));
-}, 500));
+    }, 500));
 
 populateTextarea();
 
 function onFormSubmit(event){
-      
     event.preventDefault();
     console.log("submit form");
     event.currentTarget.reset();
@@ -33,6 +34,7 @@ function onFormSubmit(event){
 };
 
 function populateTextarea(){
+    
     const savedDataOfTextarea = JSON.parse(localStorage.getItem(FEEDBACK_KEY));
     console.log(savedDataOfTextarea)
     if(savedDataOfTextarea){
